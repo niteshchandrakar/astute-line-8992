@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div id="form">
+        <h2>Enter Your Details</h2>
+        <form >
+       <br><br>
+       <span>Email:-</span> <input type="email" id="email">
+       <br><br>
+       <span>password:-</span> <input type="text" id="password">
+       <br><br>
+     <input type="submit" id="submit">
+    </form>
+    </div>
+ <a href="/signup.html">Create new Account</a>
+  
+</body>
+<script>
+    let myform=document.querySelector("form")
+    let email=document.getElementById("email")
+    let password=document.getElementById("password")
+    let submit=document.getElementById("submit")
+    let data=JSON.parse(localStorage.getItem("data"))
+let show=document.getElementsByTagName("h2")
+   submit.addEventListener("click",function(){
+    event.preventDefault()
+    let flag=false
+    for(let i=0;i<data.length;i++){
+        if(email.value==data[i].email && password.value==data[i].password){
+            flag=true
+        }
+        
+    }
+    if(flag==true){
+            alert("login Succesfull")
+        }else{
+            alert("Wrong Credentials")
+        }
+   })
+</script>
+</html>

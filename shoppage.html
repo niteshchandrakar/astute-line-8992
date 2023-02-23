@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            margin: auto;
+            background-color: antiquewhite;
+        }
+        #container>div{
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        margin: 10px;
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: azure;
+        }
+        #filter{
+          background-color: rgb(210, 134, 28);
+        }
+    </style>
+</head>
+<body>
+    <div id="form">
+        <form>
+            <input type="text" id="search" placeholder="search">
+            <input type="submit" id="submit">
+        </form>
+    </div>
+    <a style="text-decoration: none; background-color: aqua;" href="/index.html">Home</a>
+   <select id="filter">
+    <option value="">Category</option>
+    <option value="Sports">sports</option>
+    <option value="Electronics">Electroincs</option>
+    <option value="Garden">Garden</option>
+    <option value="Tools">Tools</option>
+    <option value="Shoes">Shoes</option>
+    <option value="Industrial">Industrial</option>
+    
+   </select>
+   <div id="container">
+
+   </div>
+</body>
+<script>
+   let myform=document.getElementById("form")
+   let search=document.getElementById("search")
+    let submit=document.getElementById("submit")
+submit.addEventListener("click",function(){
+    event.preventDefault()
+    console.log(search.value)
+})
+
+
+    async function getdata(){
+       try{
+        let res=await fetch("https://63f6c81a59c944921f793cf3.mockapi.io/products1")
+        res=await res.json()
+        filterdata(res)
+      
+        
+       }catch(err){
+        console.log("error",err)
+       }
+    }
+    getdata()
+   
+    let filterby=document.getElementById("filter")  
+  filterby.addEventListener("change",()=>{
+    getdata()
+  })
+function filterdata(res){
+    if(filterby.value==""){
+        displaydata(res)
+    }else{
+        res=res.filter((ele)=>{
+return ele.category==filterby.value
+        })
+        displaydata(res)
+    }
+}
+let container=document.getElementById("container")
+
+function displaydata(res){
+
+    container.innerHTML=""
+
+ console.log(res)
+ for(let i=0;i<res.length;i++){
+    
+    let card=document.createElement("div")
+    let image=document.createElement("img")
+      let name=document.createElement("h3")
+      let price=document.createElement("h4")
+      let category=document.createElement("h6")
+      let view=document.createElement("button")
+      view.innerText="view details"
+      
+
+category.innerText=res[i].category
+    name.innerText=res[i].name
+    image.src=res[i].avatar
+    price.innerText= "MRP:- "+ res[i].price
+   
+    
+  card.append(image,name,price,category,view)
+  container.append(card)
+ }
+      
+}
+
+</script>
+</html>

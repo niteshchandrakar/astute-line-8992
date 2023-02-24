@@ -26,6 +26,7 @@
     </style>
 </head>
 <body>
+    <a href="/cart.html">cart</a>
     <div id="form">
         <form>
             <input type="text" id="search" placeholder="search">
@@ -85,12 +86,12 @@ return ele.category==filterby.value
     }
 }
 let container=document.getElementById("container")
-
+let cart=JSON.parse(localStorage.getItem("cart")) ||[]
 function displaydata(res){
 
     container.innerHTML=""
 
- console.log(res)
+ 
  for(let i=0;i<res.length;i++){
     
     let card=document.createElement("div")
@@ -99,20 +100,40 @@ function displaydata(res){
       let price=document.createElement("h4")
       let category=document.createElement("h6")
       let view=document.createElement("button")
+     let addtocart=document.createElement("button")
+    addtocart.addEventListener("click",()=>{
+if(checkduplicate(res[i])==true){
+    alert("Product already in cart")
+    console.log(res[i].id)
+}else{
+    alert("Product added to cart")
+    cart.push({...res[i],quantity : 1})
+    localStorage.setItem("cart",JSON.stringify(cart))
+}
+        
+       
+    })
+     addtocart.innerText="Add To Cart"
       view.innerText="view details"
-      
-
 category.innerText=res[i].category
     name.innerText=res[i].name
     image.src=res[i].avatar
     price.innerText= "MRP:- "+ res[i].price
    
     
-  card.append(image,name,price,category,view)
+  card.append(image,name,price,category,view,addtocart)
   container.append(card)
  }
       
 }
-
+function checkduplicate(res){
+    for(let i=0;i<cart.length;i++){
+        if(res.id==cart[i].id){
+            return true;
+        }
+    }
+    return false
+}
+console.log(cart)
 </script>
 </html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            margin: auto;
+            background-color: antiquewhite;
+        }
+        #container>div{
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        margin: 10px;
+        text-align: center;
+        border-radius: 10px;
+        padding: 10px;
+        background-color: azure;
+       display: block;
+        }
+        
+
+    </style>
+</head>
+
+<body>
+    <a href="/shoppage.html">shop</a>
+    <p id="Total Pay"></p>
+    <div id="container">
+
+    </div>
+    
+</body>
+<script>
+    let container=document.getElementById("container")
+    let cart = JSON.parse(localStorage.getItem("cart")) 
+
+    function displaydata() {
+
+        container.innerHTML = ""
+cart.forEach((res)=>{
+    let card = document.createElement("div")
+            let image = document.createElement("img")
+            let name = document.createElement("h3")
+            let price = document.createElement("h4")
+            let category = document.createElement("h6")
+            let remove = document.createElement("button")
+            let inc= document.createElement("button")
+            let quantity=document.createElement("span")
+            let dec = document.createElement("button")
+           
+           
+
+
+            
+           
+          
+            category.innerText = res.category
+            name.innerText = res.name
+            image.src = res.avatar
+            price.innerText = "MRP:- " + res.price
+            inc.innerText="+"
+            quantity.innerText=res.quantity
+            dec.innerText="-"
+            remove.innerText = "remove"
+            remove.addEventListener("click",()=>{
+                cart=cart.filter((ele)=>{
+                    return ele.id!=res.id
+                })
+                localStorage.setItem("cart",JSON.stringify(cart))
+            displaydata()
+            })
+inc.addEventListener("click",()=>{
+    res=res.quantity++
+    localStorage.setItem("cart",JSON.stringify(cart))
+    displaydata()
+})
+
+dec.addEventListener("click",()=>{
+
+    if(res.quantity>1){
+        res=res.quantity--
+    localStorage.setItem("cart",JSON.stringify(cart))
+    displaydata()
+    }
+    
+})
+           
+    let sum=0
+    let pay=document.getElementById("Total Pay")
+    for(let i=0;i<cart.length;i++){
+        sum+=cart[i].price*cart[i].quantity
+    }
+    pay.innerText= "Total Amount:- "+sum
+
+
+            card.append(image, name, price, category, remove,inc,quantity,dec )
+            container.append(card)
+})
+
+        
+
+    }
+    displaydata()
+
+
+   
+</script>
+
+</html>

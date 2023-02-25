@@ -6,6 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop</title>
     <style>
+         .nav {
+            display: flex;
+            padding: 10px;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(81, 70, 70, 0.722);
+            background-color: rgb(150, 130, 177);
+        }
+#navbar{
+    display: flex;
+    background-color: coral;
+    border: 1px solid rgba(81, 70, 70, 0.722);
+}
+#navbar>a{
+ padding: 2px;
+    text-decoration: none;
+    color: black;
+    margin: auto;
+    font-weight: bold;
+   
+}
+        #search {
+            width: 60%;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+        #logo>img {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+        }
+
         #container{
             display: grid;
             grid-template-columns: repeat(4,1fr);
@@ -23,10 +56,39 @@
         #filter{
           background-color: rgb(210, 134, 28);
         }
+        #container>div>button{
+            color: brown;
+            background-color: aqua;
+            margin: 5px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
-    <a href="/cart.html">cart</a>
+    <div class="nav">
+        <div id="logo">
+            <img src="/RiverHunt.png" alt="">
+        </div>
+        <input id="search" type="text" placeholder="What can we help you find?">
+        <div id="login-button">
+            <button> <a href="/login.html">Login</a></button>
+            <a href="/cart.html" style="size: 20px; background-color: rgb(51, 32, 220); color: rgb(250, 4, 4);text-align: end;"><h1>Cart</h1></a>
+           
+        </div>
+    </div>
+    <p style="background-color: aqua;"><span style="color: red;">FREE</span> Shipping on Orders $50+</p>
+    <div id="navbar">
+        <a href="www.google.com">Fishing</a>
+        <a href="www.google.com">Boating</a>
+        <a href="www.google.com">Hunting</a>
+        <a href="www.google.com">Shooting</a>
+        <a href="www.google.com">Camping</a>
+        <a href="www.google.com">Clothing</a>
+        <a href="www.google.com">Footwear</a>
+        <a href="www.google.com">Outdoor</a>
+        <a href="www.google.com">Bargain Cave</a>
+    </div>
+   
     <div id="form">
         <form>
             <input type="text" id="search" placeholder="search">

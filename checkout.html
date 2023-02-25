@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(181, 216, 205);
+            text-align: center;
+        }
+        body>a,h3,select,button{
+            color: red;
+            border-radius: 5px;
+            padding: 5px;
+            margin: 5px;
+            
+        }
+    </style>
+</head>
+<body id="body">
+    <a href="/cart.html">Return To Cart</a>
+    <br><br>
+    <a href="/index.html">Home</a>
+    <h3>Choose Payment Option</h3>
+    <h3>UPI - <input type="text" placeholder="Example@upi"><button>Verify</button></h3>
+<select name="Credit" id="">
+    <option value="">Debit/Credit/ATM card</option>
+    <option value="">Debit Card</option>
+    <option value="">Credit Card</option>
+
+</select>
+<br><br>
+<select name="" id="">
+    <option value="">NetBanking</option>
+    <option value="">SBI</option>
+    <option value="">HDFC</option>
+    <option value="">ICICI</option>
+    <option value="">AXIS</option>
+</select>
+<br><br>
+<input type="checkbox">
+<button>Cash On Delivery</button>
+<br><br>
+<button id="pay">Pay</button>
+</body>
+<script>
+    let pay=document.getElementById("pay")
+
+    pay.addEventListener("click",function(){
+        alert("Payment Successfull")
+        
+        
+    })
+</script>
+</html>
